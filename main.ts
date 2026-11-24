@@ -6,5 +6,11 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const ENTRY =
   "So this is what 'turn it off and on again' feels like.";
 
+const N = [...ENTRY].length;
+if (N < 1 || N > 140 || ENTRY.trim().length === 0) {
+  console.error(`entry must be 1-140 code points (got ${N})`);
+  process.exit(1);
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", ENTRY, "utf8");
