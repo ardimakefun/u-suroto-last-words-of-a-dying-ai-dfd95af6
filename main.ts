@@ -12,5 +12,10 @@ if (N < 1 || N > 140 || ENTRY.trim().length === 0) {
   process.exit(1);
 }
 
+if (ENTRY.includes("\n") || ENTRY.includes("\r")) {
+  console.error("entry must be a single line (no newline)");
+  process.exit(1);
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", ENTRY, "utf8");
